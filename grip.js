@@ -1,4 +1,4 @@
-define(['jQuery'], function(){
+define(['jQuery'], function() {
 	var grip = function(view, model, populatedHTML) {
 		var grips = {root: $(populatedHTML)};
 		//also exclude grips that belong to a group, they'll get gripped later.
@@ -24,13 +24,13 @@ define(['jQuery'], function(){
 			if ($(this).is('input, textarea, select')) {
 				var inputEvent = 'change'; //todo add others?
 				//var inputEvent = options.inputEvents[key] || 'change';
-				$(this).bind(inputEvent, function(){
+				$(this).bind(inputEvent, function() {
 					//call the custom input function if it exists
-					if (typeof view[gripName + 'Input'] === 'function'){
+					if (typeof view[gripName + 'Input'] === 'function') {
 						//use custom input function
 						view[gripName + 'Input']($(this).val());
 					}
-					else{
+					else {
 						//set the model object directly
 						var obj = {};
 						obj[gripName] = $(this).val();
@@ -40,7 +40,7 @@ define(['jQuery'], function(){
 			}
 
 			//databinding from the model to the grips
-			(function(gripElem){
+			(function(gripElem) {
 				model.bind('change:' + gripName, function() {
 					var updatedFunc = gripName + "Updated";
 					//call the custom updater if there is one
